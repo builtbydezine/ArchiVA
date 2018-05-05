@@ -1,0 +1,207 @@
+<!-- views/partials/register.ejs -->
+<main style="border-bottom: 1px solid #ccc">
+
+        <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="">
+                                <h2>ArchiVA Registration</h2>
+                                <p class="lead-text">
+                                    ArchiVA is an initiative to bring forward the young talent and innovative designers who think out of the box solutions for
+                                    real life problems &amp; projects.
+                                </p>
+                                <div class="pt-50"></div>
+                            </div>
+
+
+                            <% if (teamType == 1) { %>
+                                <h3>Team Representative Information</h3>
+                                <% } %>
+        
+                            <form method="POST" action="/submit">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group <%= errors.firstName ? 'form-field-invalid' : '' %>">
+                                            <label for="firstName" class="control-label">First Name</label>
+                                            <input type="text" name="firstName" placeholder="First Name" class="form-control" value="<%= data.firstName %>" autofocus>
+                                            <% if (errors.firstName) { %>
+                                              <div class="error"><%= errors.firstName.msg %></div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group <%= errors.middleName ? 'form-field-invalid' : '' %>">
+                                            <label for="middleName" class="control-label">Middle Name</label>
+                                            <input type="text" name="middleName" placeholder="Middle Name" class="form-control" value="<%= data.middleName %>" >
+                                            <% if (errors.middleName) { %>
+                                              <div class="error"><%= errors.middleName.msg %></div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group <%= errors.lastName ? 'form-field-invalid' : '' %>">
+                                            <label for="lastName" class="control-label">Last Name</label>
+                                            <input type="text" name="lastName" placeholder="Last Name" class="form-control" value="<%= data.lastName %>" >
+                                            <% if (errors.lastName) { %>
+                                              <div class="error"><%= errors.lastName.msg %></div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="form-group <%= errors.phoneNumber ? 'form-field-invalid' : '' %>">
+                                                <label class="control-label" for="phoneNumber">Phone Number</label>
+                                                <input type="tel" class="form-control" name="phoneNumber" placeholder="Phone Numebr" value="<%= data.phoneNumber %>">
+                                                <% if (errors.phoneNumber) { %>
+                                                  <div class="error"><%= errors.phoneNumber.msg %></div>
+                                                <% } %>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group <%= errors.emailAddress ? 'form-field-invalid' : '' %>">
+                                            <label class="control-label" for="emailAddress">Email address</label>
+                                            <input type="email" class="form-control" name="emailAddress" placeholder="Email Address" value="<%= data.emailAddress %>">
+                                            <% if (errors.emailAddress) { %>
+                                              <div class="error"><%= errors.emailAddress.msg %></div>
+                                            <% } %>
+                                            <% if (alreadyRegistered) { %>
+                                              <div class="error"><%= errors %></div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group <%= errors.birthDate ? 'form-field-invalid' : '' %>">
+                                    <label for="birthDate" class="ccontrol-label">Date of Birth</label>
+                                    <input type="date" name="birthDate" class="form-control" value="<%= data.birthDate %>">
+                                    <% if (errors.birthDate) { %>
+                                      <div class="error"><%= errors.birthDate.msg %></div>
+                                    <% } %>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+        
+                                        <div class="form-group <%= errors.qualification ? 'form-field-invalid' : '' %>">
+                                            <label class="control-label" for="qualification">Highest Qualification:</label>
+                                            <select class="form-control" name="qualification" value="<%= data.qualification %>">
+                                                <option>I am currently a student</option>
+                                                <option>B.Arch (Bachelor of Architecture)</option>
+                                                <option>M.Arch/M.Planning</option>
+                                                <option>PhD</option>
+                                            </select>
+                                            <% if (errors.qualification) { %>
+                                              <div class="error"><%= errors.qualification.msg %></div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group <%= errors.passedOn ? 'form-field-invalid' : '' %>">
+                                            <label for="passedOn" class="control-label">Year of Passing</label>
+                                            <input type="text" name="passedOn" placeholder="Year of Passing" class="form-control" value="<%= data.passedOn %>">
+                                            <% if (errors.passedOn) { %>
+                                              <div class="error"><%= errors.passedOn.msg %></div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group <%= errors.currentStatus ? 'form-field-invalid' : '' %>">
+                                    <label class="control-label" for="currentStatus">Current Status:</label>
+                                    <select class="form-control" name="currentStatus" value="<%= data.currentStatus %>">
+                                        <option>Student</option>
+                                        <option>Practicing on my own</option>
+                                        <option>Working as an employee</option>
+                                        <option>Freelance/Other</option>
+                                    </select>
+                                    <% if (errors.currentStatus) { %>
+                                      <div class="error"><%= errors.currentStatus.msg %></div>
+                                    <% } %>
+                                </div>
+        
+                                <div class="form-group <%= errors.addressLine ? 'form-field-invalid' : '' %>">
+                                    <label class="control-label" for="addressLine">Address</label>
+                                    <input class="form-control" required="required" aria-required="true" placeholder="Enter your Address" type="text" name="addressLine" value="<%= data.addressLine %>">
+                                    <% if (errors.addressLine) { %>
+                                      <div class="error"><%= errors.addressLine.msg %></div>
+                                    <% } %>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group <%= errors.pinCode ? 'form-field-invalid' : '' %>">
+                                            <label class="control-label" for="pinCode">PIN Code</label>
+                                            <input id="pinCode" class="form-control" required="required" aria-required="true" placeholder="PIN Code" type="text" name="pinCode" value="<%= data.pinCode %>">
+                                            <% if (errors.pinCode) { %>
+                                              <div class="error"><%= errors.pinCode.msg %></div>
+                                            <% } %>
+                                            <div id="pinError" class="error">A valid pincode is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="cityName">City/Town</label>
+                                            <input id="cityName" type="hidden" name="cityName">
+                                            <input id="city" class="form-control" disabled="disabled" placeholder="City" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="stateName">State</label>
+                                            <input id="stateName" type="hidden" name="stateName">
+                                            <input id="state" class="form-control" disabled="disabled" placeholder="State" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <% if (teamType == 1) { %>
+                                    <h3>Team Information</h3>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="hidden" name="isTeam" value="1">
+                                            <div class="form-group <%= errors.teamCount ? 'form-field-invalid' : '' %>">
+                                                <label class="control-label" for="teamCount">Number of Teammates</label>
+                                                <select class="form-control" name="teamCount" value="<%= data.teamCount %>">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                </select>
+                                                <% if (errors.teamCount) { %>
+                                                  <div class="error"><%= errors.teamCount.msg %></div>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label class="control-label" for="teamMembers">Teammates</label>
+                                                <input type="text" name="teamMembers" placeholder="Name of team members (comma separated)" class="form-control" value="<%= data.teamMemebers %>">
+                                                <% if (errors.teamMembers) { %>
+                                                  <div class="error"><%= errors.teamMembers.msg %></div>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } else{ %>
+                                        <input type="hidden" name="isTeam" value="0">
+                                        <input type="hidden" name="teamCount" value="0">
+                                        <input type="hidden" name="teamMembers" value="Individual">
+                                        <% } %>
+
+
+                                <input type="hidden" name="registrationId">
+        
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="termsAgree"> I agree to
+                                        <a href="#">Terms</a>.
+                                    </label>
+                                </div>
+                                <div class="pt-20"></div>
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+</main>
